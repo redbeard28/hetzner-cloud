@@ -1,0 +1,10 @@
+---
+- name: Creation de l'instance {{ instance_create_name }}
+  shell: |
+    hcloud create --name {{ instance_create_name }} --type {{ instance_create.type }} \
+    -- location {{ instance_create.location }} --image {{ instance_create.image }}
+  register: create_return
+  
+- debug:
+    var: result
+    verbosity: 2
