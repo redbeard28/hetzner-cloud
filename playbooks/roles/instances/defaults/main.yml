@@ -1,0 +1,2 @@
+---
+HCLOUD_TOKEN: "{{ vault_hcloud_default_token }}"

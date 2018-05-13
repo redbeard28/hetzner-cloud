@@ -1,0 +1,9 @@
+---
+- hcloud_server:
+    token: "{{ HCLOUD_TOKEN }}"
+    state: list
+  register: hcloud_servers
+  
+- debug:
+    var: hcloud_servers
+    verbosity: 2

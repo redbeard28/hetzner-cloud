@@ -1,10 +1,29 @@
 ---
-- name: Creation de l'instance {{ instance_create_name }}
-  shell: |
-    hcloud create --name {{ instance_create_name }} --type {{ instance_create.type }} \
-    -- location {{ instance_create.location }} --image {{ instance_create.image }}
-  register: create_return
-  
-- debug:
-    var: result
-    verbosity: 2
+##############################################
+#- name: Generate envecho.sh script
+#  template:
+#    src: "{{ item }}.j2"
+#    dest: "/tmp/{{ item }}"
+#    mode: 0750
+#  with_items:
+#    - env.sh
+#    
+#- name: Init Token vars
+#  shell: |
+#    /tmp/env.sh
+##############################################    
+- name: Creation de instance
+  hcloud_server:
+    token: "{{ HCLOUD_TOKEN }}"
+    name:
+    - server01
+    - server02
+    image: "{{ instance_create_image }}"
+    server_type: "{{ instance_create_type }}"
+    location: "{{ instance_create_location }}"
+    user_data: "#cloud-config\nusers:\n  - default\n  - name: jeremie\n    groups: sudo\n    shell: /bin/bash\n    sudo: ['ALL=(ALL) NOPASSWD:ALL']\n    ssh-authorized-keys:\n      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDIX/Fw4wNHErXOmgQoN28h5SaaqMWgDuZ0+bYjxVWxhf7u7vdfZ+P+JqJHzMNYZem+V2ttksnBc4Q8cWjkleUz9eim6isR/V3CGZqW8o4q4/KPHY7bCsdoL2hHN0hk3KTWBgo0G1g8m7gpzv/3bPIa6eUZ0EvWcNl4s9h3CzgffjnDpq2k4sh2K388xRMNWvmEbiKGVi5xwtjb0I5wZq69sAHdnd4qf3aE3gVEgMBKRRlrOZWzP2bqIo46m4xqja7dav2vH76u5PbEewQ/+Gu5huF33ayp65Wr7NHuzhDmB9zbYwNJprzWSjE0duQTBWcDIC2l4K+RDt6jCKIhxT2BdRyaA45jgXzz0iUNkbWKKkx4qoreuCoK+Wp8hfNFtcOKHsNH+umw+8Hy+CYDBOhqz94kUu/dIxRiPSW1At2tC5rJpSJMGn/7WWTjV2SnkHO97sGOroljnQMedsXxAxdDP3+VBHZYSmKkDFB1gF1zJapAYIavZAsIZQNdf24AsOZA4apUcTB6fnoOhv7ReH2pszfjR+yfSPyKIp+PN+yPSJwOEtSKzWuH8BqI8JeddniR4mSRDa5pNOdV1KyqIXxzJTgUZacwyQV4zjjmgejus0HuAgAFk8hgEuV6mNYODTSMn5QXQjZxMz/dSekdU7Li/8ydzW6Rck5H0faC1tlY5Q== jeremie\n      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDIX/Fw4wNHErXOmgQoN28h5SaaqMWgDuZ0+bYjxVWxhf7u7vdfZ+P+JqJHzMNYZem+V2ttksnBc4Q8cWjkleUz9eim6isR/V3CGZqW8o4q4/KPHY7bCsdoL2hHN0hk3KTWBgo0G1g8m7gpzv/3bPIa6eUZ0EvWcNl4s9h3CzgffjnDpq2k4sh2K388xRMNWvmEbiKGVi5xwtjb0I5wZq69sAHdnd4qf3aE3gVEgMBKRRlrOZWzP2bqIo46m4xqja7dav2vH76u5PbEewQ/+Gu5huF33ayp65Wr7NHuzhDmB9zbYwNJprzWSjE0duQTBWcDIC2l4K+RDt6jCKIhxT2BdRyaA45jgXzz0iUNkbWKKkx4qoreuCoK+Wp8hfNFtcOKHsNH+umw+8Hy+CYDBOhqz94kUu/dIxRiPSW1At2tC5rJpSJMGn/7WWTjV2SnkHO97sGOroljnQMedsXxAxdDP3+VBHZYSmKkDFB1gF1zJapAYIavZAsIZQNdf24AsOZA4apUcTB6fnoOhv7ReH2pszfjR+yfSPyKIp+PN+yPSJwOEtSKzWuH8BqI8JeddniR4mSRDa5pNOdV1KyqIXxzJTgUZacwyQV4zjjmgejus0HuAgAFk8hgEuV6mNYODTSMn5QXQjZxMz/dSekdU7Li/8ydzW6Rck5H0faC1tlY5Q== jcuadrado@redbeard-consulting.fr\napt_update: true\napt_upgrade: true\npackages:\n  - python-pip\n  - fail2ban\n  - vim\n  - git-core\n  - ddclient\n  - libdigest-sha-perl\n  - cpanminus\noutput: {all: '| tee -a /var/log/cloud-init-output.log'}"
+    ssh_keys:
+    - jeremie   # by name
+    - c9
+  ignore_errors: yes
+  failed_when: no

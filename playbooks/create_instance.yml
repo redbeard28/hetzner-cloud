@@ -1,0 +1,6 @@
+---
+- hosts: all
+  vars_files:
+    - secrets/{{site}}-secrets.yml
+  roles:
+    - {role: instances, tags: [create_instance] }

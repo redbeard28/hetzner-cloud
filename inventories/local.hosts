@@ -1,2 +1,5 @@
 [all]
 localhost
+
+[all:vars]
+site=local

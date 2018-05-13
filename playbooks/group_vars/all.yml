@@ -4,3 +4,7 @@ ntp_server:
   - 1.fr.pool.ntp.org
   - 2.fr.pool.ntp.org
 
+instance_create_location: 'nbg1'
+instance_create_image: 'ubuntu-16.04'
+instance_create_type: 'cx11'
+
