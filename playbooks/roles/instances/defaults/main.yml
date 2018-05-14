@@ -1,2 +1,5 @@
 ---
 HCLOUD_TOKEN: "{{ vault_hcloud_default_token }}"
+jeremie_sshkey_pub: "{{ vault_jeremie_sshkey_pub }}"
+c9_sshkey_pub: "{{ vault_c9_sshkey_pub }}"
+cloud_init: "{{ vault_hcloud_default_cloudinit }}"
