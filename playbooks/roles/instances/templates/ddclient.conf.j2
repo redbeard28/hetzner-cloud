@@ -1,8 +1,14 @@
-# Generated via Ansible
-{% for key, value in ddclient.iteritems() %}
-{% if key != "domain" and key != "password" %}
-{{ key }}={{ value }}
-{% endif %}
-{% endfor %}
-password='{{ ddclient_password }}'
-{{ ddclient.domain }}
+# ddclient configuration for Dynu
+#
+# /etc/ddclient.conf
+daemon=60                                                    # Check every 60 seconds.
+syslog=yes                                                   # Log update msgs to syslog.
+mail=root                                                    # Mail all msgs to root.
+mail-failure=root                                            # Mail failed update msgs to root.
+pid=/var/run/ddclient.pid                                    # Record PID in file.
+use=web, web=checkip.dynu.com/, web-skip='IP Address'        # Get ip from server.
+server=api.dynu.com                                          # IP update server.
+protocol=dyndns2                        
+login='{{ vault_dynudns_username }}'                                             # Your username
+password='{{ vault_base64_auth }}'                                       # Your password or MD5/SHA256 of password
+{{ansible_hostname}}.freeddns.org
