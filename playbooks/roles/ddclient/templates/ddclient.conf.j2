@@ -10,5 +10,5 @@ use=web, web=checkip.dynu.com/, web-skip='IP Address'        # Get ip from serve
 server=api.dynu.com                                          # IP update server.
 protocol=dyndns2                        
 login='{{ vault_dynudns_username }}'                                             # Your username
-password='{{ vault_base64_auth }}'                                       # Your password or MD5/SHA256 of password
+password='{{ vault_dynudns_md5_password }}'                                       # Your password or MD5/SHA256 of password
 {{ansible_hostname}}.freeddns.org

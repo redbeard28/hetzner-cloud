@@ -2,8 +2,7 @@
 - name: Creation de instance
   hcloud_server:
     token: "{{ HCLOUD_TOKEN }}"
-    name:
-    "{{ item }}""
+    name: "{{ item }}"
     image: "{{ instance_create_image }}"
     server_type: "{{ instance_create_type }}"
     location: "{{ instance_create_location }}"
@@ -11,4 +10,4 @@
   ignore_errors: yes
   failed_when: no
   with_items:
-    "{{ liste_servers }}"
+    - "{{ liste_servers }}"

@@ -1,10 +1,14 @@
 ---
 # Use ddclient to setup a free (or cheap) subdomain with a dynamic dns provider
+- name: install build-essential ddclient
+  apt: pkg=build-essential state=present
+  tags: ddclient
+  
 - name: install ddclient
   apt: pkg=ddclient default_release=unstable state=present
   tags: ddclient
 
-- name: install libdigest-sha-perl for ddclient (needed for freedns)
+- name: install libdigest-sha-perl for ddclient
   apt: pkg=libdigest-sha-perl state=present
   tags: ddclient
 
