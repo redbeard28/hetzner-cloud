@@ -1,0 +1,8 @@
+---
+- name: Delete instances
+  hcloud_server:
+    token: "{{ HCLOUD_TOKEN }}"
+    name: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ liste_servers }}"

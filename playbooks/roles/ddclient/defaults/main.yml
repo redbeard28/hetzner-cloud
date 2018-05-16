@@ -5,4 +5,3 @@ c9_sshkey_pub: "{{ vault_c9_sshkey_pub }}"
 cloud_init: "{{ vault_hcloud_default_cloudinit }}"
 liste_servers:
   - server01
-  - server02

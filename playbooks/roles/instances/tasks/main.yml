@@ -5,3 +5,6 @@
 
 - include: list.yml
   tags: [ list_instance, create_instance ]
+
+- include: delete.yml
+  tags: [ delete_instance ]
