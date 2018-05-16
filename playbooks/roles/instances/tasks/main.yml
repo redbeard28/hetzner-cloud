@@ -2,7 +2,6 @@
 - include: deploy.yml
   when: ( instance_create_valide == 'True' )
   tags: create_instance
-- include: ddns.yml
-  tags: create_instance
+
 - include: list.yml
   tags: [ list_instance, create_instance ]
