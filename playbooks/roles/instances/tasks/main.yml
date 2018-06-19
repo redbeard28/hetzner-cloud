@@ -7,4 +7,5 @@
   tags: [ list_instance, create_instance ]
 
 - include: delete.yml
+  when: ( instance_delete == 'True' )
   tags: [ delete_instance ]
