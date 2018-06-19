@@ -11,3 +11,15 @@
   failed_when: no
   with_items:
     - "{{ liste_servers }}"
+
+- name: Copy isntall.sh to user home folder
+  copy:
+    src: install.sh
+    dest: ~/install.sh
+    owner: root
+    group: root
+    mode: 0755
+
+- name: Execute install.sh
+  shell: |
+    cd ~/ && ./install.sh
