@@ -6,7 +6,7 @@
     image: "{{ instance_create_image }}"
     server_type: "{{ instance_create_type }}"
     location: "{{ instance_create_location }}"
-    user_data: "cloud-config\napt_sources:\n  - source: 'ppa:ansible/ansible'\napt_update: true\napt_upgrade: true\npackages:\n  - python-pip\n  - fail2ban\n  - vim\n  - git-core\n  - ddclient\n  - libdigest-sha-perl\n  - cpanminus\n  - software-properties-common\n  - ansible\nruncmd:\n  - [ cd, ~/.ssh ]\n  - [ wget, https://github.com/redbeard28/hetzner-cloud/blob/master/authorized_keys ]\n  - [ chmod, 664, ~/.ssh/authorized_keys ]\n  - [ cd, ~/ ]\n  - [ git, clone, https://github.com/redbeard28/hetzner-cloud.git ]\n  - [ cd, hetzner-cloud ]\n  - [ ansible-playbook, -i, 'localhost,', -c, local, playbooks/prequisits.yml, -e site=hetzner, --tags, dynu ]"
+    user_data: "cloud-config\napt_sources:\n  - source: 'ppa:ansible/ansible'\napt_update: true\napt_upgrade: true\npackages:\n  - python-pip\n  - fail2ban\n  - vim\n  - git-core\n  - ddclient\n  - libdigest-sha-perl\n  - cpanminus\n  - software-properties-common\n  - ansible\nruncmd:\n  - [ cd, ~/.ssh ]\n  - [ wget, https://github.com/redbeard28/hetzner-cloud/blob/master/authorized_keys ]\n  - [ chmod, 664, ~/.ssh/authorized_keys ]"
   ignore_errors: yes
   failed_when: no
   with_items:
