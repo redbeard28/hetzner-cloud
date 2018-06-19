@@ -13,18 +13,19 @@
     - "{{ liste_servers }}"
 
 - name:    Install prerequisites
-  apt:     name={{item}} update_cache=yes
-    with_items:
-      - apt-transport-https
-      - ca-certificates
-      - curl
-      - software-properties-common
-      - python-pip
-      - fail2ban
-      - vim
-      - git-core
-      - libdigest-sha-perl
-      - cpanminus
+  apt:
+    name: {{item}} update_cache=yes
+  with_items:
+    - apt-transport-https
+    - ca-certificates
+    - curl
+    - software-properties-common
+    - python-pip
+    - fail2ban
+    - vim
+    - git-core
+    - libdigest-sha-perl
+    - cpanminus
 
 - name: Add Ansible repo
   apt_repository:
