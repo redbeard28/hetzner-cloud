@@ -14,7 +14,7 @@
 
 - name:    Install prerequisites
   apt:
-    name: {{item}}
+    name: "{{item}}"
     update_cache: yes
   with_items:
     - apt-transport-https
@@ -32,7 +32,7 @@
   apt_repository:
     repo: ppa:ansible/ansible
 
-- name:    Add Docker GPG key
+- name: Add Docker GPG key
   apt_key: url=https://download.docker.com/linux/ubuntu/gpg
 
 - name:    Add Docker APT repository
@@ -52,5 +52,4 @@
     mode: 0755
 
 - name: Execute install.sh
-  shell: |
-    cd ~/ && ./install.sh
+  shell: "~/install.sh"
