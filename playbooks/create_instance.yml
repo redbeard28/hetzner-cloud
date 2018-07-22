@@ -4,3 +4,4 @@
     - secrets/{{site}}-secrets.yml
   roles:
     - {role: instances, tags: [create_instance] }
+    - {role: docker_install, tags: [docker_install] }
